@@ -1,0 +1,23 @@
+/* app.component.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 400px;
+  }
+  
+  .title {
+    margin-bottom: 1rem;
+  }
+  
+  .input-field {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .save-button {
+    margin-top: 1rem;
+  }
+  

@@ -1,0 +1,50 @@
+.content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.overviewImg {
+    position: absolute;
+    height: 100vh;
+    bottom: 0;
+    opacity: 0.2;
+    z-index: -1;
+    right: 10px;
+}
+
+.icon {
+    display: flex;
+    color: black;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: orange;
+    align-items: center;
+    justify-content: center;
+}
+
+.name{
+    margin-top: 20px;
+}
+
+.signedOut{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media (max-width: 480px) {
+
+    .overviewImg{
+        max-width: 50%;
+    }
+  }

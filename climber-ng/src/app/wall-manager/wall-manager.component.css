@@ -1,0 +1,37 @@
+.content {
+    margin-top: 80px;
+    width: 100%;
+    height: auto;
+    background: white;
+    border-radius: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.table {
+    height: 100%;
+}
+
+.searchDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.manageButton {
+    margin-bottom: 10px;
+    background-color: orange;
+}
+
+::ng-deep .mdc-data-table__cell, .mdc-data-table__header-cell {
+    padding: 16px 16px 0 16px;
+}
+
+::ng-deep .mdc-data-table__cell {
+    padding: 5px 16px 0 16px !important;
+}

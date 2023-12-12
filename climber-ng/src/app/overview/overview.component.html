@@ -1,0 +1,15 @@
+<img src="/assets/climber.png" class="overviewImg">
+<div class="content">
+    <div class="textDiv">
+        <h1 class="landingText" style="font-weight: 200;">Welcome to OpenClimber!</h1>
+        <h3 class="flexCentered" style="max-width: 400px;">A free platform for you climbing center, allowing you to see available walls & routes, track your own as well as others progress and achievements!</h3>
+        <h3 class="flexCentered" style="max-width: 400px; font-style: italic;">If you're interested in setting this solution up for your center, feel free to contact me below, or download the source-code on Github!</h3>
+    </div>
+
+</div>
+<div class="buttonSection">
+    <button mat-raised-button style="color: black; background-color: orange; z-index: 0;" (click)="navigate('/wall-list')">Take me to the climbing already!</button>
+    <img (click)="sendTo('https://github.com/Ludvigaman/climber')" src="/assets/github_button.png" style="max-width: 150px; cursor: pointer; margin-top: 50px">
+
+</div>
+<app-footer class="footer"></app-footer>

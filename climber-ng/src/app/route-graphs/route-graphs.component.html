@@ -1,0 +1,49 @@
+<div class="content">
+    <h1 style="color: white; margin: 0; margin-bottom: 10px;">Statistical overview</h1>
+    <p style="color: #8b92a9">Press the route to see details or go to the tracker</p>
+    <h2 style="color: white; margin: 0;">Routes per anchor</h2>
+    <p style="color: #8b92a9; margin: 0; margin-bottom: 5px;" >Routes (Color & Grade) / Anchor</p>
+    <div class="barGraph">
+        <ng-container *ngFor="let anchor of anchors">
+            <div class="column">
+                <div class="stack">
+                    <ng-container *ngFor="let wall of walls">
+                        <div *ngIf="wall.anchor == anchor" class="routeContainer">
+                            <div class="route" style.background="{{getColorName(wall.color)}}" (click)="navigate('wall-view/'+wall.id)">
+                                <p class="cellMargins" style="color: white" *ngIf="getColorName(wall.color) != 'Yellow' && getColorName(wall.color) != 'Pink'">{{getGradeName(wall.grade)}}</p>
+                                <p class="cellMargins" style="color: black" *ngIf="getColorName(wall.color) == 'Yellow' || getColorName(wall.color) == 'Pink'">{{getGradeName(wall.grade)}}</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <hr class="hrDiv">
+                <div class="label">
+                    <p class="labelTag">{{ anchor }}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <br>
+    <h2 style="color: white; margin: 0;">Routes per grade</h2>
+    <p style="color: #8b92a9; margin: 0; margin-bottom: 5px;" >Routes (Color & Anchor) / Grade</p>
+    <div class="barGraphGrades">
+        <ng-container *ngFor="let grade of grades">
+            <div class="columnGrades">
+                <div class="stack">
+                    <ng-container *ngFor="let wall of walls">
+                        <div *ngIf="getGradeName(wall.grade) == grade" class="routeContainer" (click)="navigate('wall-view/'+wall.id)">
+                            <div class="routeNarrow" style.background="{{getColorName(wall.color)}}">
+                                <p class="cellMargins" style="color: white" *ngIf="getColorName(wall.color) != 'Yellow' && getColorName(wall.color) != 'Pink'">{{wall.anchor}}</p>
+                                <p class="cellMargins" style="color: black" *ngIf="getColorName(wall.color) == 'Yellow' || getColorName(wall.color) == 'Pink'">{{wall.anchor}}</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <hr class="hrDiv">
+                <div class="label">
+                    <p class="labelTag">{{ grade }}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

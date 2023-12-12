@@ -1,0 +1,68 @@
+<div class="content">
+    <h1 style="margin-top: 20px">Edit route</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+        <mat-form-field class="formField">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput placeholder="Name" required minlength="5" formControlName="name">
+            <mat-error>Min length is 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Builder</mat-label>
+            <mat-select name="builder" required formControlName="builder" [(value)]="builder"> 
+                <mat-option *ngFor="let builder of builderList" [value]="builder">
+                    {{builder.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Anchor</mat-label>
+            <mat-select name="anchor" required formControlName="anchor"> 
+                <mat-option *ngFor="let anchor of anchors" [value]="anchor">
+                    {{anchor}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Color</mat-label>
+            <mat-select name="color" required formControlName="color">
+                <mat-option *ngFor="let color of colors" [value]="color">
+                    {{color}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Grade</mat-label>
+            <mat-select name="grade" required formControlName="grade">
+                <mat-option *ngFor="let grade of grades" [value]="grade">
+                    {{grade}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Types</mat-label>
+            <mat-select multiple required formControlName="type">
+              <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Date created</mat-label>
+            <input matInput [matDatepicker]="pickerCreated" required formControlName="dateCreated">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerCreated"></mat-datepicker-toggle>
+            <mat-datepicker #pickerCreated></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formField">
+            <mat-label>Date removed</mat-label>
+            <input matInput [matDatepicker]="pickerRemoved" formControlName="dateRemoved">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerRemoved"></mat-datepicker-toggle>
+            <mat-datepicker #pickerRemoved></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="formField">
+            <mat-label>Description</mat-label>
+            <textarea type="text" matInput placeholder="Description" formControlName="description" style="height: 150px"></textarea>
+        </mat-form-field>
+        <div class="buttonDiv">
+            <button mat-raised-button type="sumbit" [disabled]="!registerForm.valid">Save</button>
+            <button mat-raised-button (click)="this.close()">Cancel</button>
+        </div>
+    </form>  
+</div>

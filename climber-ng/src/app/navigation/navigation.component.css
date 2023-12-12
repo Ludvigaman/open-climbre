@@ -1,0 +1,131 @@
+  .spacer {
+    flex: 1;
+  }
+
+  .loginDiv {
+    display: flex;
+    transition: 300ms;
+    align-items: center;
+  }
+
+  .rightBar{
+    display: flex;
+    background-image: linear-gradient(60deg,#7b1fa2,#913f9e);
+    box-shadow: 0 7px 10px -5px #913f9e66;
+    height: 100%;
+    align-items: center;
+    z-index: 1;
+    border-radius: 0 0 0 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .navLogo {
+    transform: scale(2); 
+    margin-left: 20px; 
+    color: black;
+    font-weight: 600;
+  }
+
+  .navLogo:hover {
+    cursor: pointer;
+  }
+
+  .loginDiv:hover {
+    color: #f90;
+    cursor: pointer;
+  }
+
+  .name{
+    margin: 0;
+    color: white;
+  }
+
+  .nameMobile{
+    display: none;
+    color: white;
+  }
+
+  .profileIcon{
+    transform: scale(1.5);
+    transition: 300ms;
+    color: white;
+  }
+
+  .profileIcon:hover {
+    color: rgb(0, 2, 0);
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    /*background-color: #f90;*/
+    color: black;
+    font-weight: 600;
+  }
+
+  .navText{
+    margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-weight: 600; 
+    color: #f90;
+    cursor: pointer;
+  }
+
+  .signInText{
+    margin-bottom: 0;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-weight: 600; 
+    color: white;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+
+  .content {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+
+  .signInText{
+    display: none;
+  }
+
+  .name {
+    display: none;
+  }
+
+  .nameMobile {
+    display: block;
+    margin: 0;
+    margin-right: 10px
+  }
+
+  .rightBar{
+    padding-right: 0;
+    padding-left: 20px;
+  }
+
+  .content {
+    width: auto;
+  }
+
+  .profileIcon {
+    margin-right: 20px;
+  }
+
+}

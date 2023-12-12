@@ -1,0 +1,100 @@
+<div class="content">
+    <h1 style="color: white">Available routes</h1>
+    <div class="mat-elevation-z8 filterPane" [ngClass]="!hideFilters ? 'sortingContainerExpanded' : 'sortingContainer'">
+      <div class="sorting fadeIn1" *ngIf="!hideFilters">
+        <mat-form-field appearance="outline" class="sortField anchorBtn">
+          <mat-label>Filter by grade</mat-label>
+          <mat-select name="grade" [(value)]="grade" (selectionChange)="filterGrade()">
+            <mat-option *ngFor="let grade of availableGrades" [value]="grade">
+              {{grade}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="sortField anchorBtn">
+          <mat-label>Filter by anchor</mat-label>
+          <mat-select name="anchor" [(value)]="anchor" (selectionChange)="filterAnchor()">
+            <mat-option *ngFor="let anchor of anchors" [value]="anchor">
+              {{anchor}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="sortField anchorBtn" *ngIf="isLoggedIn">
+          <mat-label>Filter by status</mat-label>
+          <mat-select name="selectedStatus" [(value)]="selectedStatus" (selectionChange)="filterStatus()">
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{status}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="clear()" class="clearBtn clearBtnColor"><mat-icon>delete_outline</mat-icon>Clear filters</button>
+      </div>
+
+      <div class="filtering fadeIn1" *ngIf="!hideFilters">
+        <mat-form-field appearance="outline" class="sort">
+          <mat-label>Include archive</mat-label>
+          <mat-select name="archive" [(value)]="archive" (selectionChange)="filterArchive()">
+            <mat-option value="yes">Yes</mat-option>
+            <mat-option value="no">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="sort">
+          <mat-label>Order by grade</mat-label>
+          <mat-select name="grade" [(value)]="gradeOrder" (selectionChange)="orderByDifficulty()">
+            <mat-option value="difficult">Difficult first</mat-option>
+            <mat-option value="easy">Easiest first</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="sort">
+          <mat-label>Order by date</mat-label>
+          <mat-select name="anchor" [(value)]="dateOrder" (selectionChange)="orderByDate()">
+            <mat-option value="latest">Newest first</mat-option>
+            <mat-option value="oldest">Oldest first</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="clearSort()" class="clearBtn clearBtnColor"><mat-icon>delete_outline</mat-icon>Clear sorting</button>
+      </div>
+
+      <button mat-button *ngIf="!hideFilters" (click)="hideFilters = !hideFilters" class="clearBtn" style="margin-top: 10px; margin-bottom: 10px;">Hide filters<mat-icon>arrow_upward</mat-icon></button>
+      <button mat-button *ngIf="hideFilters" (click)="hideFilters = !hideFilters" class="clearBtn" style="margin-top: 10px; margin-bottom: 10px;">Show filters<mat-icon>arrow_downward</mat-icon></button>
+    </div>
+
+    <div class="card-container">
+        <mat-card *ngFor="let wall of filteredWalls" class="card">
+            <mat-card-header>
+              <div [ngClass]="wall.removed == null ? 'wallCardHeader' : 'wallCardHeaderRemoved'">
+                <mat-card-title style="color: white; display: flex; align-items: center;"><p style="margin: 0; font-size: 12px; color: orange" *ngIf="isNew(wall.created)">New!&nbsp;</p><mat-icon *ngIf="isNew(wall.created)" style="color: orange; transform: scale(0.9);">whatshot</mat-icon>&nbsp;{{ wall.name }}</mat-card-title>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div>
+                      <mat-card-subtitle style="color: #8b92a9">Added: {{ wall.created | date:"MMMM yyyy" }}</mat-card-subtitle>
+                      <mat-card-subtitle style="color: #8b92a9" *ngIf="wall.removed != null">Removed: {{ wall.removed | date:"MMMM yyyy" }}</mat-card-subtitle>
+                      <mat-card-subtitle style="color: #606477">{{ createTypeString(wall.typesJSON) }}</mat-card-subtitle>
+                      <mat-card-subtitle style="color: #606477">Anchor: {{ wall.anchor }}</mat-card-subtitle>
+                      <p style="color: #8b92a9">{{ wall.description }}</p>
+                    </div>
+                    <div class="grade" style.border-color="{{getColorName(wall.color)}}">
+                        <strong style="color: white">{{ getGradeName(wall.grade) }}</strong>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-content *ngIf="isLoggedIn">
+              <div class="centerAlign">
+                <strong style="color: #6287d3d1">Status:&nbsp;</strong>
+                <mat-icon *ngIf="trackerStatus(wall.id) == 3" style="color: green" title="Completed">check_circle</mat-icon>
+                <mat-icon *ngIf="trackerStatus(wall.id) == 1" style="color: gold" title="Flashed">flash_on</mat-icon>
+                <mat-icon *ngIf="trackerStatus(wall.id) == 2" style="color: orange" title="Work in progress">play_circle_filled</mat-icon>
+                <mat-icon *ngIf="trackerStatus(wall.id) == 5" style="color: red" title="Failed">block</mat-icon>
+                <mat-icon *ngIf="trackerStatus(wall.id) == 0" style="color: red" title="Not started">trip_origin</mat-icon>
+                <p style="margin: 0; color: #6287d3d1" *ngIf="trackerStatus(wall.id) == 4">Not tracked</p>
+              </div>
+            </mat-card-content>   
+            <mat-card-actions style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 8px; margin-left: 8px">
+              <button style="z-index: 0; color: #6287d3d1" *ngIf="isLoggedIn && !inMyList(wall.id) && wall.removed == null" mat-button (click)="addToMyList(wall.id)"><mat-icon>add_circle</mat-icon>Add to tracker</button>
+              <button style="z-index: 0; color: #6287d3d1" *ngIf="isLoggedIn && inMyList(wall.id) && wall.removed == null" (click)="navigate('wall-view/'+wall.id)" mat-button><mat-icon>playlist_add_check</mat-icon>View tracker</button>
+              <button style="z-index: 0; color: #6287d3d1" mat-button (click)="navigate('wall-view/'+wall.id)">Details</button>
+            </mat-card-actions>         
+          </mat-card>
+      </div>
+</div>

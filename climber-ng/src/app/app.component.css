@@ -1,0 +1,12 @@
+.main-container {
+  display: flex; 
+  justify-content: center; 
+  margin-left: 80px;
+  height: max-content;
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    margin-left: 0;
+  }
+}

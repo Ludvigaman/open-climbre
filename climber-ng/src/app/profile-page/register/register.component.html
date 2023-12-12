@@ -1,0 +1,62 @@
+<!-- register.component.html -->
+<div class="content">
+    <img src="/assets/mkk.png" class="logo">
+    <h1>Register</h1> 
+    <ng-container class="loginContainer" *ngIf="success == false">
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Full name</mat-label>
+            <input type="text" matInput placeholder="Name" [(ngModel)]="fullName">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput placeholder="Username" [(ngModel)]="username">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email" [(ngModel)]="email">
+        </mat-form-field>
+        <p *ngIf="!emailValid" style="color: red">Please enter a valid email</p>
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Choose password</mat-label>
+            <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" [(ngModel)]="password"  (change)="passwordDifferent = false">
+            <mat-icon *ngIf="hide" (click)="hide = !hide" matSuffix>visibility</mat-icon>
+            <mat-icon *ngIf="!hide" (click)="hide = !hide" matSuffix>visibility_off</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Type password again</mat-label>
+            <input [type]="hideCheck ? 'password' : 'text'" matInput placeholder="Password" [(ngModel)]="passwordCheck" (change)="passwordDifferent = false">
+            <mat-icon *ngIf="hideCheck" (click)="hideCheck = !hideCheck" matSuffix>visibility</mat-icon>
+            <mat-icon *ngIf="!hideCheck" (click)="hideCheck = !hideCheck" matSuffix>visibility_off</mat-icon>
+        </mat-form-field>
+        <div class="passwordValidation">
+            <div class="passwordContainer">
+                <mat-icon style="color: green;" *ngIf="password.length > 7">check_circle</mat-icon><mat-icon *ngIf="password.length <= 7">check_circle_outline</mat-icon>&nbsp;Password must be at least 8 characters<br>
+            </div>
+            <div class="passwordContainer">
+                <mat-icon style="color: green;" *ngIf="password.match(regexSpecialChar)">check_circle</mat-icon><mat-icon *ngIf="!password.match(regexSpecialChar)">check_circle_outline</mat-icon>&nbsp;Password includes a special character<br>
+            </div>
+            <div class="passwordContainer">
+                <mat-icon style="color: green;" *ngIf="password.match(regexUppercase)">check_circle</mat-icon><mat-icon *ngIf="!password.match(regexUppercase)">check_circle_outline</mat-icon>&nbsp;Password includes an uppercase<br>
+            </div>
+            <div class="passwordContainer">
+                <mat-icon style="color: green;" *ngIf="password.match(regexLowercase)">check_circle</mat-icon><mat-icon *ngIf="!password.match(regexLowercase)">check_circle_outline</mat-icon>&nbsp;Password includes a lowercase<br>
+            </div>
+            <div class="passwordContainer">
+                <mat-icon style="color: green;" *ngIf="password.match(regexDigit)">check_circle</mat-icon><mat-icon *ngIf="!password.match(regexDigit)">check_circle_outline</mat-icon>&nbsp;Password includes a digit<br>
+            </div>
+            <br>
+        </div>
+        <p *ngIf="!passwordValid" class="errorText">The password must include at least one lowercase letter, one uppercase letter, one digit, one special character ( @$!%*?&_- ) and a minimum length of 8 characters. </p>
+        <p *ngIf="passwordDifferent" class="errorText">The passwords doesn't match...</p>
+        <p *ngIf="error" class="errorText">{{errorMessage}}</p>
+        <button mat-raised-button class="loginButton" style="z-index: 0;" (click)="register()">Register</button>
+        <label style="margin-top: 20px">Already have an account?</label>
+        <label class="register" (click)="navigate('login')">Log in</label>
+    </ng-container>
+    <ng-container *ngIf="success == true">
+        <br>   
+        <br>
+        <h2>Registration sucessful, you can now log in below.</h2>
+        <button mat-raised-button class="loginButton" style="z-index: 0;" (click)="navigate('login')">Login</button>
+    </ng-container>    
+</div>

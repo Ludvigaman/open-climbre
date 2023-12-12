@@ -1,0 +1,78 @@
+<div class="content">
+    <div class="main" *ngIf="!loading">
+
+        <mat-card class="card">
+            <mat-card-header>
+              <div [ngClass]="wall.removed == null ? 'wallCardHeader' : 'wallCardHeaderRemoved'">
+                <mat-card-title style="color: white">{{ wall.name }}</mat-card-title>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div>
+                      <mat-card-subtitle style="color: #8b92a9">Added: {{ wall.created | date:"MMMM yyyy" }}</mat-card-subtitle>
+                      <mat-card-subtitle style="color: #606477">{{ createTypeString(wall.typesJSON) }}</mat-card-subtitle>
+                      <mat-card-subtitle style="color: #606477">Anchor: {{ wall.anchor }}</mat-card-subtitle>
+                      <p style="color: #8b92a9">{{ wall.description }}</p>
+                    </div>
+                    <div class="grade" style.border-color="{{getColorName(wall.color)}}">
+                        <strong style="color: white">{{ getGradeName(wall.grade) }}</strong>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-content>
+                <div class="metadata">
+                    <h2 style="margin-bottom: 0; font-weight: 500; color: #8b92a9">Tracker</h2>
+                    <div class="metadata" *ngIf="!isSignedIn">
+                        <p style="color: #8b92a9;">To track your progess and see statistics, sign in or create an account!</p>   
+                        <button mat-raised-button class="modButton remove" (click)="navigate('login')">Sign in...</button>      
+                    </div>
+        
+                    <div class="metadata" *ngIf="progress == undefined">
+                        <button style="z-index: 0; color: #6287d3d1" *ngIf="isSignedIn && wall.removed == null" mat-button (click)="addToMyList(wall.id)"><mat-icon>add_circle</mat-icon>Add to tracker</button>
+                        <h3 style="color: #ff8100"  *ngIf="isSignedIn && wall.removed != null">This route has been dismantled, and can no longer be added to your tracker...</h3>
+                    </div>
+                    <div class="metadata" *ngIf="progress != undefined">
+                        <div class="subSection">
+                            <div class="centerAlign">
+                                <strong>Status:</strong>
+                                <mat-icon *ngIf="progress.completed && progress.attempts != 1" style="color: green" title="Completed">check_circle</mat-icon>
+                                <mat-icon *ngIf="progress.completed && progress.attempts == 1" style="color: gold" title="Flashed">flash_on</mat-icon>
+                                <mat-icon style="color: orange" *ngIf="!progress.completed && progress.attempts > 0 && !progress.archived" title="Work in progress">play_circle_filled</mat-icon>
+                                <mat-icon style="color: red" *ngIf="!progress.completed && progress.attempts > 0 && progress.archived" title="Failed">block</mat-icon>
+                                <mat-icon *ngIf="!progress.completed && progress.attempts == 0" style="color: red" title="Not started">trip_origin</mat-icon>
+                            </div>
+                            <div style="display: flex; flex-direction: column;">
+
+                                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                                    <strong>Attempts:</strong>
+                                    <h2 style="margin-bottom: 0;">{{ progress.attempts }}</h2>
+                                    <div style="display: flex; align-items: center;">
+                                        <mat-icon class="modButtonAdd" (click)="addProgress()" *ngIf="!progress.archived">add_circle</mat-icon>
+                                        <mat-icon class="modButtonRemove"  (click)="removeProgress()" *ngIf="!progress.archived">remove_circle</mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="manageButtons">
+                                <button mat-raised-button class="modButton" style="z-index: 0;" (click)="unMarkAsComplete()" *ngIf="!progress.archived && progress.completed"><mat-icon style="color: orange">remove_circle_outline</mat-icon>Unmark as completed</button>
+                                <button mat-raised-button class="modButton" style="z-index: 0;" (click)="markAsComplete()" *ngIf="!progress.archived && !progress.completed"><mat-icon style="color: green">check_circle</mat-icon> Mark as completed</button>
+                                <button mat-raised-button class="modButton remove" style="z-index: 0;" (click)="deleteProgress()" *ngIf="(progress.archived && progress.attempts == 0) || !progress.archived"><mat-icon style="color: red">remove_circle</mat-icon>Remove from tracker</button>
+                                <button mat-raised-button class="modButton" style="z-index: 0; background: linear-gradient(60deg,#029eb1,#25b1c3);" (click)="archiveProgress()" *ngIf="wall.removed && !progress.archived"><mat-icon style="color: black">archive</mat-icon>Archive tracker</button>
+                                <button mat-raised-button class="modButton" style="z-index: 0; background: linear-gradient(60deg,#029eb1,#25b1c3);" disabled *ngIf="progress.archived"><mat-icon style="color: black">archive</mat-icon>Tracker is archived</button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statistics" *ngIf="isSignedIn">
+                        <h3 style="margin-bottom: 0;">Route statistics</h3>
+                        <p>Across the center, this route has:</p>
+                        <div>
+                            <mat-icon>person</mat-icon>{{ totalCompletes }} Completions
+                            <mat-icon>repeat</mat-icon>{{ totalTries }} Attempts
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>          
+          </mat-card>
+    </div>
+</div>

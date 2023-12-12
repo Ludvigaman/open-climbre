@@ -1,0 +1,10 @@
+<!-- app.component.html -->
+<div class="container">
+    <h1 class="title">{{title}}</h1>
+    <mat-form-field class="input-field">
+      <input matInput [(ngModel)]="inputValue" type="string" placeholder="Enter username">
+    </mat-form-field>
+    <p *ngIf="error" style="color: red">This username does not exist...</p>
+    <button mat-raised-button color="primary" class="save-button" (click)="save()">Verify and add</button>
+  </div>
+  

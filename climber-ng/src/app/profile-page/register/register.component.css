@@ -1,0 +1,46 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    background: white;
+    border-radius: 20px;
+}
+
+.logo{
+    max-width: 50%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.errorText {
+    color: red; width: 50%
+}
+
+.passwordContainer {
+    display: flex;
+    align-items: center;
+}
+
+.loginContainer {
+    width: 20vw
+}
+
+.loginField {
+    width: 60%
+}
+
+.loginButton {
+    background-color: #f90 !important;
+    width: 50%;
+}
+
+.register {
+    text-decoration: underline;
+}
+
+.register:hover{
+    cursor: pointer;
+}

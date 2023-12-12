@@ -1,0 +1,24 @@
+
+<div class="content">
+    <img src="/assets/mkk.png" class="logo">
+    <h1 style="color: white">Login</h1> 
+    <ng-container class="loginContainer">
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput placeholder="Username" #username>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="loginField">
+            <mat-label>Password</mat-label>
+            <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" #password (keyup.Enter)="authenticate(username.value, password.value)">
+            <mat-icon *ngIf="hide" (click)="hide = !hide" matSuffix>visibility</mat-icon>
+            <mat-icon *ngIf="!hide" (click)="hide = !hide" matSuffix>visibility_off</mat-icon>
+        </mat-form-field>
+        <p *ngIf="error" style="color: red; width: 50%; text-align: center;">{{errorMessage}}</p>
+        <button mat-raised-button class="loginButton" style="z-index: 0;" (click)="authenticate(username.value, password.value)">Login</button>
+        <label style="margin-top: 20px">Don't have an account yet?</label>
+        <label class="register" (click)="navigate('register')">Register</label>
+        <label style="margin-top: 20px">Or did you forget your password?</label>
+        <label class="register" (click)="navigate('reset/')">Reset password here</label>
+    </ng-container>
+
+</div>

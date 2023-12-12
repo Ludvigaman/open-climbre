@@ -1,0 +1,18 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+    <div class="logo-container">
+        <mat-icon class="logo" (click)="collapsed = !collapsed">toll</mat-icon>
+        <h1 class="navText fadeIn1" *ngIf="collapsed" (click)="navigate('/')">OpenClimber</h1>
+        <button class="btn-close fadeIn1" *ngIf="collapsed">
+            <mat-icon (click)="collapsed = !collapsed" style="color: #a9afbbd1">close</mat-icon>
+        </button>
+    </div>
+
+    <u class="sidenav-nav" [ngClass]="!collapsed ? 'sidenav-nav-collapsed' : ''">
+        <li class="sidenav-nav-item fadeIn" *ngFor="let data of navData">
+                <div class="sidenav-nav-link" (click)="navigate(data.routeLink); collapsed = false">
+                    <mat-icon class="sidenav-link-icon fadeIn05" *ngIf="collapsed || (screenWidth > 480)">{{ data.icon }}</mat-icon>
+                    <h3 class="sidenav-link-text fadeIn05" *ngIf="collapsed">{{ data.label }}</h3>
+                </div>
+        </li>
+    </u>
+</div>

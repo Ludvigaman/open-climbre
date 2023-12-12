@@ -1,0 +1,82 @@
+<div class="content">
+    <mat-card class="card">
+        <mat-card-header>
+          <div class="header">
+            <mat-card-title style="color: white">Dashboard</mat-card-title>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="dualContainer">
+                <div class="singleContainer">
+                    <h4 style="color: #8b92a9;">Routes you've working on...</h4>
+                    <ng-container *ngFor="let wall of activeWalls">
+                        <div class="wallCardProgress">
+                            <p><b>{{wall.name}}, {{getGradeName(wall.grade)}}</b><br>You've attempted this route <strong>{{getAttempts(wall.id)}}</strong> times</p>
+                            <div style="display: flex; justify-content: flex-end;">
+                                <button mat-button style=" z-index: 0; color: white; height: 10px" (click)="navigate('wall-view/'+wall.id)"><mat-icon>arrow_right_alt</mat-icon></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="wallCardProgress" *ngIf="activeWalls != undefined && activeWalls.length == 0">
+                        <p>It seems like you aren't working on any routes for the moment...</p>
+                        <div style="display: flex; justify-content: center;">
+                            <button mat-button style=" z-index: 0; color: white; height: 40px; margin-top: 10px" (click)="navigate('wall-list')">Find routes to try!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="singleContainer">
+                    <h4 style="color: #8b92a9;">Your latest completions...</h4>
+                    <ng-container *ngFor="let wall of completedWalls; let i = index">
+                        <div class="wallCardComplete" *ngIf="i < 4">
+                            <p><b>{{wall.name}}, {{getGradeName(wall.grade)}}</b><br>You completed this route after <strong>{{getAttempts(wall.id)}}</strong> attempts</p>
+                            <div style="display: flex; justify-content: flex-end;">
+                                <button mat-button style=" z-index: 0; color: white; height: 10px" (click)="navigate('wall-view/'+wall.id)"><mat-icon>arrow_right_alt</mat-icon></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="wallCardComplete" *ngIf="completedWalls != undefined && completedWalls.length == 0">
+                        <p>It seems like you haven't completed any routes yet...</p>
+                        <div style="display: flex; justify-content: center;">
+                            <button mat-button style=" z-index: 0; color: white; height: 40px; margin-top: 10px" (click)="navigate('wall-list')">Find routes to try!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dualContainer">
+                <div class="singleContainer">
+                    <h4 style="color: #8b92a9;">New routes you haven't tried yet...</h4>
+                    <ng-container *ngFor="let wall of excludedWalls; let i = index">
+                        <div class="wallCardNoTrack" *ngIf="i < 4">
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 5px;">
+                                <p><b>Date added:</b> {{wall.created | date}}</p>                            </div>
+                            <p><b>{{wall.name}}, {{getGradeName(wall.grade)}}</b><br>{{wall.description}}</p>
+                            <div style="display: flex; justify-content: flex-end;">
+                                <button mat-button style="z-index: 0; color: white; height: 10px" (click)="navigate('wall-view/'+wall.id)"><mat-icon>arrow_right_alt</mat-icon></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="wallCardSeeMore" style="cursor: pointer;" (click)="navigate('wall-list')">
+                        <div style="display: flex; justify-content: center;">
+                            <button mat-button style="z-index: 0; color: white; height: 10px" >Browse all routes...</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="singleContainer">
+                    <h4 style="color: #8b92a9;">Routes you didn't manage to finish...</h4>
+                    <ng-container *ngFor="let wall of unfinishedWalls; let i = index">
+                        <div class="wallCardRemoved" *ngIf="i < 4">
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 5px;">     
+                                <p><b>Date removed:</b> {{wall.removed | date}}</p>                      
+                            </div>
+                            <p><b>{{wall.name}}, {{getGradeName(wall.grade)}}</b><br>{{wall.description}}</p>
+                            <div style="display: flex; justify-content: flex-end;">
+                                <button mat-button style="z-index: 0; color: white; height: 10px" (click)="navigate('wall-view/'+wall.id)"><mat-icon>arrow_right_alt</mat-icon></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </mat-card-content>        
+      </mat-card>
+
+</div>

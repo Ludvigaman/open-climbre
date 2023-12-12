@@ -1,0 +1,47 @@
+<img src="/assets/climber.png" class="overviewImg">
+<div class="content" *ngIf="isSignedIn">
+    <div class="icon">
+        <mat-icon style="transform: scale(4);">person</mat-icon>
+    </div>
+    <h1 class="name">
+        {{user.name | titlecase}}
+    </h1>
+    <div class="leftAligned">
+        <h3><strong>Member since:</strong> {{user.dateJoined | date}}</h3>
+        <h3><strong>Username:</strong> {{user.username }}</h3>
+        <h3><strong>Email:</strong> {{user.email}}</h3>
+    </div>
+    <button (click)="signOut()" mat-raised-button style="margin-top: 20px; z-index: 0;">Sign-out</button>
+    <br>
+    <h2>Change password</h2>
+    <mat-form-field appearance="outline" class="loginField">
+        <mat-label>Old password</mat-label>
+        <input [type]="hideOld ? 'password' : 'text'" matInput placeholder="Old password" [(ngModel)]="oldPassword">
+        <mat-icon *ngIf="hideOld" (click)="hideOld = !hideOld" matSuffix>visibility</mat-icon>
+        <mat-icon *ngIf="!hideOld" (click)="hideOld = !hideOld" matSuffix>visibility_off</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="loginField">
+        <mat-label>New password</mat-label>
+        <input [type]="hideNew ? 'password' : 'text'" matInput placeholder="New password" [(ngModel)]="newPassword">
+        <mat-icon *ngIf="hideNew" (click)="hideNew = !hideNew" matSuffix>visibility</mat-icon>
+        <mat-icon *ngIf="!hideNew" (click)="hideNew = !hideNew" matSuffix>visibility_off</mat-icon>
+    </mat-form-field>
+    <p *ngIf="!newPasswordValid" style="color: red; width: 50%; text-align: center;">The password must include at least one lowercase letter, one uppercase letter, one digit, one special character ( @$!%*?&_- ) and a minimum length of 8 characters. </p>
+    <p *ngIf="error" style="color: red; width: 50%; text-align: center;">Your old password doesn't seem to be correct.</p>
+    <p *ngIf="ok" style="color: green; width: 50%; text-align: center;">Your password has been updated!</p>
+
+
+    <button mat-raised-button style="margin-top: 20px; z-index: 0;" (click)="changePassword()">Update password</button>
+</div>
+
+<div class="content" *ngIf="!isSignedIn">
+    <div class="icon">
+        <mat-icon style="transform: scale(4);">person</mat-icon>
+    </div>
+    <div class="signedOut">
+        <h2>Oops</h2>
+        <h2>You seem to be signed out...</h2>
+
+    </div>
+    <button (click)="navigate('login')" mat-raised-button style="margin-top: 20px; z-index: 0;">Sign-in</button>
+</div>

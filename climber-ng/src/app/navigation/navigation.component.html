@@ -1,0 +1,13 @@
+<div class="toolbar content" role="banner">
+  <div class="spacer"></div>
+  <div class="rightBar mat-elevation-z8">
+    <h3 *ngIf="isSignedIn" class="name">{{ name | titlecase }}, </h3>
+    <h3 *ngIf="isSignedIn" class="nameMobile">{{ name | titlecase }}</h3>
+    <div class="loginDiv">
+      <h3 *ngIf="!isSignedIn" (click)="navigate('login')" class="signInText">Sign in</h3>
+      <mat-icon *ngIf="!isSignedIn" class="profileIcon" (click)="navigate('login')" >person_outline</mat-icon>
+      <h3 *ngIf="isSignedIn" class="signInText" (click)="signOut()">Sign out</h3>
+      <mat-icon *ngIf="isSignedIn" class="profileIcon" (click)="signOut()">exit_to_app</mat-icon>
+    </div>
+  </div>
+</div>

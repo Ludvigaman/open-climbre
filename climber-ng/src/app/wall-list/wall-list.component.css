@@ -1,0 +1,246 @@
+.content {
+    width: 100%;
+    margin-top: 30px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.anchorBtn{
+  margin-top: 22px
+}
+
+.filterText {
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 0;;
+}
+
+.clearBtn{
+  height: 56px;
+  width: 140px;
+  z-index: 0;
+}
+
+.clearBtnColor {
+  background-color: #ff6f00 !important;
+  color: #1f1f1f !important;
+}
+
+.sortField {
+  margin-top: 22px;
+  width: 25%;
+}
+
+.sort {
+  width: 25%;
+}
+
+.sortingContainer {
+  display: flex;
+  width: 40%;
+  height: 50px;
+  flex-direction: column;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  align-items: center;
+}
+
+.sortingContainerExpanded {
+  display: flex;
+  width: 100%;
+  height: 230px;
+  flex-direction: column;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  align-items: center;
+}
+
+.wallCardHeader {
+  background: linear-gradient(60deg,#288c55,#4ea752); 
+  box-shadow: 0 7px 10px -5px #4ea75266; 
+  width: 100%; 
+  border-radius: 10px; 
+  padding: 15px; 
+  margin-top: -30px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.wallCardHeaderRemoved {
+  background: linear-gradient(60deg,#fff680,#bd8643);
+  box-shadow: 0 7px 10px -5px #a7794e66;
+  width: 100%; 
+  border-radius: 10px; 
+  padding: 15px; 
+  margin-top: -30px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.centerAlign{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.sorting{
+
+  display: flex;
+  width: 80vw;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+
+}
+
+::ng-deep .mat-mdc-select-value {
+  color:  #1f1f1f !important;
+}
+
+::ng-deep .cdk-overlay-pane:not(.mat-mdc-select-panel-above) .mdc-menu-surface.mat-mdc-select-panel {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: linear-gradient(45deg, #fd9002, #ffa93e);
+  transform-origin: top center;
+  color:  #1f1f1f;
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  color: #1f1f1f;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+  color:  #1f1f1f
+}
+
+.filtering{
+
+  display: flex;
+  width: 80vw;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: row;
+
+}
+
+.filterPane {
+  background-image: linear-gradient(60deg,#f5700c,#ff9800);
+  margin-bottom: 20px;
+  box-shadow: 0 7px 10px -5px #ff980066;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card {
+    flex: 1 0 300px;
+    background-color: #202940;
+    display: flex;
+    border-radius: 20px;
+    margin-top: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .grade {
+    border: 7px solid; 
+    border-radius: 30%; 
+    width: 50px; 
+    min-width: 50px;
+    height: 50px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.fadeIn05 {
+  animation: fadein .5s;
+}
+
+.fadeIn1 {
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 950px) {
+
+    .filterText {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .content {
+        margin-top: 70px;
+    }
+
+    .anchorBtn{
+      margin-top: 0
+    }
+
+    .sortField{
+      width: 60%;
+    }
+
+    .sort {
+      width: 60%;
+    }
+
+    .clearBtn{
+      height: 30px;
+      width: 60%;
+      z-index: 0;
+    }
+
+    .sorting{
+      display: flex;
+      width: 80vw;
+      margin-top: 20px;
+      border-radius: 20px;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .sortingContainer {
+      width: 90%;
+      height: 50px;
+    }
+    
+    .sortingContainerExpanded {
+      width: 90%;
+      height: 640px;
+    }
+    
+    .filtering{
+
+      display: flex;
+      width: 80vw;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      margin-bottom: 20px;
+    
+    }
+    
+
+}
