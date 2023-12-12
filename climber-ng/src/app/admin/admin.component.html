@@ -1,0 +1,28 @@
+<div class="content">
+    <div class="main">
+
+        <mat-card class="card">
+            <mat-card-header>
+              <div style="background: linear-gradient(60deg,#288c55,#4ea752);; width: 100%; border-radius: 10px; padding: 15px; margin-top: -30px; display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+                <mat-card-title style="color: white">Admin module</mat-card-title>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div>
+                      <mat-card-subtitle style="color: #8b92a9">Current amount of users: </mat-card-subtitle>
+                      <mat-card-subtitle style="color: #606477; margin-right: 10px; flex-wrap: wrap;" *ngIf="userList != null">{{userList.length}}</mat-card-subtitle>
+                      <br>
+                      <mat-card-subtitle style="color: #8b92a9">Current builders: </mat-card-subtitle>
+                      <div style="display: flex; flex-wrap: wrap;" *ngIf="builders != null">
+                        <mat-card-subtitle style="color: #606477; margin-right: 10px; flex-wrap: wrap;" *ngFor="let user of builders">{{user.username}}</mat-card-subtitle>
+                      </div>
+                      <br>
+                      <mat-card-subtitle style="color: #8b92a9">Routes available: </mat-card-subtitle>
+                      <mat-card-subtitle style="color: #606477; margin-right: 10px; flex-wrap: wrap;" *ngIf="walls != null">{{walls.length}}</mat-card-subtitle>
+                    </div>
+                </div>
+            </mat-card-content>
+          </mat-card>
+    </div>
+</div>

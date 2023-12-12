@@ -1,0 +1,116 @@
+.content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.grade {
+    border: 7px solid; 
+    border-radius: 100%; 
+    width: 50px; 
+    height: 50px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 10px;
+}
+.icon {
+    color: rgb(255, 196, 0)
+}
+
+.subSection {
+    color: #6287d3d1;
+}
+
+.card {
+    flex: 1 0 300px;
+    background-color: #202940;
+    border-radius: 20px;
+    margin-top: 10px;
+    height: 80vh;
+    width: 70vw;
+  }
+
+.centerAlign{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modButtonAdd:hover {
+    color: green;
+    transition: all 0.3s ease;
+}
+.modButtonRemove:hover {
+    color: red;
+    transition: all 0.3s ease;
+}
+
+.modButton {
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    width: 500px;
+    color: white !important;
+    background: linear-gradient(60deg,#288c55,#4ea752);
+}
+
+.remove {
+    background: linear-gradient(60deg,#f5700c,#ff9800); 
+}
+
+@media (max-width: 950px) {
+
+    .modButton {
+        width: 250px;
+    }
+
+}
+
+.manageButtons{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.comments {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.metadata {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reviews {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.types{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
