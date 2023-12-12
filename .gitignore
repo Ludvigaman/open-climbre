@@ -1,0 +1,6 @@
+.vs/
+climber-ng/.vscode/
+climber-api/obj/
+climber-api/bin/
+
+*.cache
